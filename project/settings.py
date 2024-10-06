@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w2ftq0nz(9^f)rux%a!5e9-dfmj(d@g6rakch_5t0ztvm@2e3*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -130,5 +130,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
-    'https://54d9-2a01-9700-5181-1100-21db-d839-76cf-11f7.ngrok-free.app',  # Add your ngrok URL here with https
+      # Add your ngrok URL here with https
 ]
