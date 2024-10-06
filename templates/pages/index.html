@@ -22,12 +22,13 @@
     left: 10px; /* Position from the left */
     padding: 20px; /* Add some padding */
     border-radius: 10px; /* Rounded corners */
-    color: rgb(232, 217, 10); /* Fully opaque text color */
+    color: yellow; /* Fully opaque text color */
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     background-size: cover; /* Cover the entire box with the background */
     background-position: center; /* Center the background */
     display: none; /* Initially hidden */
     z-index: 1000; /* Make sure it's above other elements */
+     border: 2px solid yellow; /* Border around the box */
 }
         #exitZoom {
             position: absolute;
@@ -141,6 +142,51 @@
             background-color: #fff;
             border: 1px solid #ddd;
         }
+        #Notes {
+            position: absolute;
+            top: 10px;
+            right: 220px;
+            z-index: 100;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius:20%;
+            opacity:0.75;
+        }
+        #Notes:hover{
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        #square {
+    width: 100px;
+    height: 100px;
+    background-color: #4CAF50; /* Green square */
+    position: absolute;
+    top: 50px;
+    right: 220px;
+    display: none; /* Initially hidden */
+    border-radius: 5px;
+}#infobox2 {
+    background-color: black; /* Box background color */
+    color: yellow; /* Text color */
+    padding: 20px; /* Padding inside the box */
+    width: 300px; /* Fixed width for the box */
+    border-radius: 10px; /* Rounded corners */
+    border: 2px solid yellow; /* Border around the box */
+    font-family: Arial, sans-serif; /* Font family */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Box shadow for effect */
+    margin-top: 20px; /* Space above the box */
+    position: absolute; /* Positioning */
+    top: 50px;
+    right: 220px;
+    display: none; /* Hidden by default */
+}
+
+#infobox2 p {
+    margin: 5px 0; /* Margin between paragraphs */
+    font-size: 16px; /* Font size */
+}
     </style>
 </head>
 <body>
@@ -148,6 +194,16 @@
     <div id="infoBox"></div>
     <button id="toggleTransparency">on/off Orbit </button>
     <button id="toggleVoice">Turn Voice Off</button>
+    <button id="Notes"> Notes </button>
+    <div id="infobox2" style="display:none;">
+    <p>• Welcome to our website!  This quick tour will help you understand how to navigate and use the page with ease.</p><br>
+        <p>• Ready to explore the universe?  Drag the planets and rotate them around their axis, and you can also zoom in or out as you like!</p><br>
+        <p>• Do you have any questions or would you like to know more?</p><br>
+        <p>• Here you can control the movement of the planets.</p><br>
+        <p>• The range of destruction is measured in meters.</p><br>
+
+</div>
+
     <button id="exitZoom">Exit Zoom</button>
 
     <!-- Watermark -->
@@ -4352,6 +4408,26 @@ function readInfo(infoText) {
 
             controls.target.lerp(planet.mesh.position, transitionSpeed);
         }
+        // Toggle the info box when Notes button is clicked
+document.getElementById("Notes").addEventListener("click", function(event) {
+    const infoBox = document.getElementById("infobox2");
+    infoBox.style.display = infoBox.style.display === "block" ? "none" : "block";
+
+    // Prevent the click from propagating to the document
+    event.stopPropagation();
+});
+
+// Close the info box when clicking outside of it
+document.addEventListener("click", function(event) {
+    const infoBox = document.getElementById("infobox2");
+    const notesButton = document.getElementById("Notes");
+
+    // Check if the click is outside the info box and the Notes button
+    if (!infoBox.contains(event.target) && !notesButton.contains(event.target)) {
+        infoBox.style.display = "none";
+    }
+});
+
 
         function animate() {
             requestAnimationFrame(animate);
